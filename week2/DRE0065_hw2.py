@@ -12,8 +12,8 @@ for fname in os.listdir("test-images"):
     g_mask = cv.inRange(hsv, np.array([40, 80, 80]), np.array([100, 255, 255]))
     r_mask = cv.inRange(hsv, np.array([0, 100, 100]), np.array([10, 255, 255])) | cv.inRange(hsv, np.array([160, 100, 100]), np.array([180, 255, 255]))
     
-    green_count = np.count_nonzero(g_mask)
-    red_count = np.count_nonzero(r_mask)
+    green_count = cv.countNonZero(g_mask)
+    red_count = cv.countNonZero(r_mask)
     out = cv.hconcat([img, cv.bitwise_and(img, img, mask=g_mask), cv.bitwise_and(img, img, mask=r_mask)])
     
     if green_count >= red_count:
